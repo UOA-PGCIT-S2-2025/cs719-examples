@@ -50,15 +50,15 @@ This repository contains example code which you can run and play around with. **
 
 1. [**intro-to-svelte**](./example-4-1-intro-to-svelte/): Contains basic Svelte examples, including components, props & exports, event handling, reactivity, styling, and logic blocks.
 
-2. [**binding**](./example-4-2-binding/): Contains more advanced Svelte exmaples, including custom events and data binding.
+2. [**binding**](./example-4-2-binding/): Contains more advanced Svelte exmaples, including data binding.
 
-3. [**stores**](./example-4-3-stores/): Contains examples showing how Svelte stores can be created and used. Stores are a great way to take certain application state "out of" the component hierarchy and share it amongst many different components, while maintaining reactivity. This example shows off both writable & derived stores, and the use of the `$` syntax to access and modify stores almost as if they were plain variables.
+3. [**svelte-data-fetching-in-components**](./example-4-3-svelte-data-fetching-in-components/): Contains examples of how we can `fetch()` data from a server from within our Svelte components - both at component load time, or when our application state changes (using reactive statements).
 
 4. [**multi-page-apps**](./example-4-4-multi-page-apps/): Contains examples showing how the SvelteKit filesystem-based router can be used to provide multi-page apps. Includes information on routes, file & directory structure, layouts and `<slot>`s, hyperlinks, route parameters, and more.
 
-5. [**svelte-data-fetching-in-components**](./example-4-5-svelte-data-fetching-in-components/): Contains examples of how we can `fetch()` data from a server from within our Svelte components - both at component load time, or when our application state changes (using reactive statements).
+5. [**sveltekit-data-fetching**](./example-4-5-sveltekit-data-fetching/): Contains examples showing the _preferred_ method of data fetching using SvelteKit. We show how to write a `load()` function in `+layout.js` or `+page.js`, and how that data can then be accessed using a special `data` variable we declare in our `+layout.svelte` and `+page.svelte` components.
 
-6. [**sveltekit-data-fetching**](./example-4-6-sveltekit-data-fetching/): Contains examples showing the _preferred_ method of data fetching using SvelteKit. We show how to write a `load()` function in `+layout.js` or `+page.js`, and how that data can then be accessed using a special `data` variable we declare in our `+layout.svelte` and `+page.svelte` components.
+6. [**stores**](./example-4-6-stores/): Contains examples showing how Svelte stores can be created and used. Stores are a great way to take certain application state "out of" the component hierarchy and share it amongst many different components, while maintaining reactivity. This example shows off both writable & derived stores, and the use of the `$` syntax to access and modify stores almost as if they were plain variables.
 
 ### Topic 5: Node.js, Express, and APIs
 

@@ -1,36 +1,24 @@
-<!-- This component shows how we can create and dispatch custom events. In this case, we have defined a custom
-    "numberClicked" event, which will be dispatched to listeners whenever the user clicks one of the numpad
-    buttons. The event will contain information about which number was clicked. -->
+<!-- This component is a number pad which holds a value. Each time one of the numpad buttons is clicked,
+     we essentially "type" the new number to the "right" of the existing number (by multiplying the existing
+     value by 10 to "shift" it left).
+     
+     We can easily bind to the "value" prop to access it outside of this component. -->
 
 <script>
-  // We need to access Svelte's createEventDispatcher function to create our own custom events.
-  import { createEventDispatcher } from "svelte";
+  export let value = 0;
 
   const NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-  /**
-   * This gets us access to an event dispatcher (the "dispatch" variable), which we can call to
-   * dispatch custom events.
-   */
-  const dispatch = createEventDispatcher();
-
-  /**
-   * This function dispatches a "numberClicked" event, supplying the number which was clicked.
-   *
-   * We could just as easily have defined this as an arrow function directly in the button's
-   * on:click handler below.
-   *
-   * @param num the number which was clicked.
-   */
-  function dispatchNumberClickedEvent(num) {
-    dispatch("numberClicked", num);
+  function handleNumberClicked(number) {
+    // Update the value by multiplying it by 10 then adding the clicked number.
+    value = 10 * value + number;
   }
 </script>
 
 <div>
   <!-- Loop through our NUMS array. Display a button for each number. -->
-  {#each NUMS as num}
-    <button on:click={() => dispatchNumberClickedEvent(num)}>{num}</button>
+  {#each NUMS as num (num)}
+    <button on:click={() => handleNumberClicked(num)}>{num}</button>
   {/each}
 </div>
 

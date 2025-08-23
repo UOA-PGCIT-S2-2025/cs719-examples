@@ -1,11 +1,11 @@
 <script>
   import SimpleCalculator from "$lib/components/SimpleCalculator.svelte";
   import NumberPad from "$lib/components/NumberPad.svelte";
-  import BindableNumberPad from "$lib/components/BindableNumberPad.svelte";
   import SignupForm from "$lib/components/SignupForm.svelte";
 
   // This value will be set by the NumberPad below.
-  let numberClicked = null;
+  let numberPadValue = 0;
+
   // This value can be changed with the BindableNumberPad or its associated <input> below.
   let enteredNumber = 0;
 </script>
@@ -14,14 +14,21 @@
 
 <h2>Component demos go here</h2>
 
-<h3>Number pad (shows off custom events)</h3>
+<h3>Number pad (shows off binding)</h3>
 <div class="numpad-container">
-  <!-- We can handle our NumberPad's custom numberClicked event using the on: directive,
-		just as we would handle regular events like button clicks. The number which was clicked
-		is available in the event's "detail" property. -->
-  <NumberPad on:numberClicked={(e) => (numberClicked = e.detail)} />
+  <!-- We can bund number pad's value to our numberPadValue above. -->
+  <NumberPad bind:value={numberPadValue} />
 
-  <p>The last number clicked was: {numberClicked}</p>
+  <div>
+    <!-- We can also bind the number pad's value to an input field. -->
+    <label for="number-input">Enter a number:</label>
+    <input id="number-input" type="number" bind:value={numberPadValue} />
+  </div>
+
+  <div>
+    <p>The number pad value is: {numberPadValue}</p>
+    <button on:click={() => numberPadValue = 0}>Reset</button>
+  </div>
 </div>
 
 <h3>Simple calculator (shows off binding)</h3>
@@ -29,13 +36,6 @@
 
 <h3>Signup form (shows off binding to more kinds of form elements)</h3>
 <SignupForm />
-
-<h3>Bindable number pad (shows off custom bindings)</h3>
-<div class="numpad-container">
-  <!-- Both clicking the numpad buttons and typing in the textbox will change the enteredNumber value. -->
-  <BindableNumberPad bind:value={enteredNumber} />
-  <input type="number" bind:value={enteredNumber} />
-</div>
 
 <style>
   .numpad-container {
